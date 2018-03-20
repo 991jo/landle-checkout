@@ -1,0 +1,85 @@
+var products = [
+	{
+		name : "Club Mate",
+		price : 1.5,
+		amount : 0
+	},
+	{
+		name : "Club Mate Cola",
+		price : 1.5,
+		amount : 0
+	},
+	{
+		name : "Wulle",
+		price : 2.0,
+		amount : 0
+	}
+]
+
+function build_table(){
+	for (var i in products){
+		var product = products[i]
+
+		var name = product.name
+		var amount = product.amount
+		var price = product.price
+		var sum = amount*price || ""
+
+		var buttons = `<div class="input-group mb-3">
+	<div class="input-group-prepend">
+		<button type="button" class="btn" onclick="increase(${ i })">+</button>
+	</div>
+	<span class="input-group-text" id="amount-${ i }">${ amount }</span>
+	<div class="input-group-append">
+		<button type="button" class="btn" onclick="decrease(${ i })">-</button>
+	</div>
+</div>`
+
+		var table = $("#product-table");
+
+		var row = $("<tr>");
+		row.attr("id",`product-row-${ i }`)
+		row.append($("<td>").text(name));
+		row.append($("<td>").text(price));
+		row.append($("<td>").html(buttons));
+		row.append($("<td>").text(sum));
+		table.append(row)
+	}
+}
+
+function increase(num){
+	products[num].amount += 1;
+	$("#amount-" + num)[0].textContent = products[num].amount;
+
+	update_sums();
+}
+
+function decrease(num){
+	if (products[num].amount > 0) {
+		products[num].amount -= 1
+	} else {
+		products[num].amount = 0;
+	}
+
+	$("#amount-" + num)[0].textContent = products[num].amount;
+
+	update_sums();
+}
+
+function update_sums(){
+	var total_price = 0;
+	for( var i in products){
+		product = products[i]
+		var sum = product.amount * product.price;
+		total_price += sum;
+		var display_sum = sum || ""; //display nothing if nothing has been entered
+
+		var row = $(`#product-row-${ i }`);
+		row.find("td")[3].textContent = display_sum;
+	}
+
+	var sum = $("#sum")[0]
+	sum.textContent = total_price
+}
+
+build_table();
