@@ -35,7 +35,7 @@ function build_table(){
 	</div>
 </div>`
 
-		var table = $("#product-table");
+		var table = $("#product-table tbody");
 
 		var row = $("<tr>");
 		row.attr("id",`product-row-${ i }`)
@@ -45,6 +45,8 @@ function build_table(){
 		row.append($("<td>").text(sum));
 		table.append(row)
 	}
+
+	update_sums()
 }
 
 function increase(num){
@@ -80,6 +82,22 @@ function update_sums(){
 
 	var sum = $("#sum")[0]
 	sum.textContent = total_price
+}
+
+function clears(){
+	// clear the data structure
+	for (var i in products){
+		var product = products[i];
+
+		product.amount = 0;
+	}
+
+	// clear the table by removing all rows except the heading
+	var table = $("#product-table tbody").empty();
+
+	// rebuild the table
+	build_table();
+	update_sums();
 }
 
 build_table();
