@@ -13,6 +13,31 @@ var products = [
 		name : "Wulle",
 		price : 2.0,
 		amount : 0
+	},
+	{
+		name : "Fanta",
+		price : 2.0,
+		amount : 0
+	},
+	{
+		name : "Radler",
+		price : 1.5,
+		amount : 0
+	},
+	{
+		name : "Effect",
+		price : 2.0,
+		amount : 0
+	},
+	{
+		name : "Wasser",
+		price : 1,
+		amount : 0
+	},
+	{
+		name : "Cola",
+		price : 2.0,
+		amount : 0
 	}
 ]
 
