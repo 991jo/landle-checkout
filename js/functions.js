@@ -100,4 +100,26 @@ function clears(){
 	update_sums();
 }
 
+function show_alert(alert_name){
+	$("#"+ alert_name).show();
+}
+function hide_alert(alert_name){
+	$("#"+ alert_name).hide();
+}
+
+function enter(){
+	clears();
+	show_alert("success-alert");
+	setTimeout(hide_alert,1000, "success-alert");
+}
+
+function abort(){
+	clears();
+	show_alert("abort-alert");
+	setTimeout(hide_alert,1000, "abort-alert");
+}
+
+
 build_table();
+hide_alert("success-alert");
+hide_alert("abort-alert");
